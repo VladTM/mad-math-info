@@ -1,0 +1,21 @@
+from PIL import Image
+
+def resize_image(input_image_path, output_image_path, seed_image_path):
+    seed_image = Image.open(seed_image_path)
+    target_width, target_height = seed_image.size
+
+    original_image = Image.open(input_image_path)
+    width_ratio = target_width / original_image.width
+    height_ratio = target_height / original_image.height
+    new_width = int(original_image.width * width_ratio)
+    new_height = int(original_image.height * height_ratio)
+
+    resized_image = original_image.resize((new_width, new_height))
+    resized_image.save(output_image_path)
+
+# Usage example
+input_image_path = "file1.png"
+output_image_path = "file1_resized.png"
+seed_image_path = ".png"
+
+resize_image(input_image_path, output_image_path, seed_image_path)
